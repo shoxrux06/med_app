@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "998975273607",
+    "project_id": "mmpapp-9bba1",
+    "storage_bucket": "mmpapp-9bba1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998975273607:android:1a43d18f984541015fd622",
+        "android_client_info": {
+          "package_name": "com.shoxruxdev.medicalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998975273607-pbmngsgml1k8g5sosjv6cpdi3see2db8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc2Eb6AfwExhBNKH1t-43UTx7UyCWragI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998975273607-pbmngsgml1k8g5sosjv6cpdi3see2db8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "998975273607-so51ai272fr75rgt5vtkf7kut1v16g23.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shoxruxdev.medicalapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
