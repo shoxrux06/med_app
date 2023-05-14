@@ -9,46 +9,47 @@ part of 'record_model.dart';
 _$_RecordModel _$$_RecordModelFromJson(Map<String, dynamic> json) =>
     _$_RecordModel(
       id: json['id'] as int? ?? 0,
-      dateTime: json['dateTime'] == null
-          ? null
-          : DateTime.parse(json['dateTime'] as String),
+      dateTime: json['dateTime'] as String?,
       painStatusNumber: json['painStatusNumber'] as int? ?? 0,
-      painLocation: json['painLocation'] == null
-          ? null
-          : LocationModel.fromJson(
-              json['painLocation'] as Map<String, dynamic>),
-      symptoms: json['symptoms'] == null
-          ? null
-          : SymptomsModel.fromJson(json['symptoms'] as Map<String, dynamic>),
-      characteristics: json['characteristics'] == null
-          ? null
-          : CharacteristicsModel.fromJson(
-              json['characteristics'] as Map<String, dynamic>),
-      aggravatingFactors: json['aggravatingFactors'] == null
-          ? null
-          : AggravatingFactorsModel.fromJson(
-              json['aggravatingFactors'] as Map<String, dynamic>),
-      medications: json['medications'] == null
-          ? null
-          : MedicationModel.fromJson(
-              json['medications'] as Map<String, dynamic>),
-      environment: json['environment'] == null
-          ? null
-          : EnvironmentModel.fromJson(
-              json['environment'] as Map<String, dynamic>),
+      painLocationList: (json['painLocationList'] as List<dynamic>?)
+              ?.map((e) => LocationModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      symptomsList: (json['symptomsList'] as List<dynamic>?)
+              ?.map((e) => SymptomsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      characteristicList: (json['characteristicList'] as List<dynamic>?)
+              ?.map((e) =>
+                  CharacteristicsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      aggravatingFactorsList: (json['aggravatingFactorsList'] as List<dynamic>?)
+              ?.map((e) =>
+                  AggravatingFactorsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      medicationsList: (json['medicationsList'] as List<dynamic>?)
+              ?.map((e) => MedicationModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      environmentList: (json['environmentList'] as List<dynamic>?)
+              ?.map((e) => EnvironmentModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       notes: json['notes'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_RecordModelToJson(_$_RecordModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'dateTime': instance.dateTime?.toIso8601String(),
+      'dateTime': instance.dateTime,
       'painStatusNumber': instance.painStatusNumber,
-      'painLocation': instance.painLocation,
-      'symptoms': instance.symptoms,
-      'characteristics': instance.characteristics,
-      'aggravatingFactors': instance.aggravatingFactors,
-      'medications': instance.medications,
-      'environment': instance.environment,
+      'painLocationList': instance.painLocationList,
+      'symptomsList': instance.symptomsList,
+      'characteristicList': instance.characteristicList,
+      'aggravatingFactorsList': instance.aggravatingFactorsList,
+      'medicationsList': instance.medicationsList,
+      'environmentList': instance.environmentList,
       'notes': instance.notes,
     };

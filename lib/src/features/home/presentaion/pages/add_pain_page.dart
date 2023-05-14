@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/src/core/constants/app_assets.dart';
 import 'package:medical_app/src/core/constants/app_constants.dart';
+import 'package:medical_app/src/core/utils/database_helper.dart';
+import 'package:medical_app/src/features/home/data/models/aggravating_factors_model.dart';
+import 'package:medical_app/src/features/home/data/models/characteristic_model.dart';
+import 'package:medical_app/src/features/home/data/models/environment_model.dart';
 import 'package:medical_app/src/features/home/data/models/location_model.dart';
+import 'package:medical_app/src/features/home/data/models/medication_description.dart';
+import 'package:medical_app/src/features/home/data/models/medication_model.dart';
+import 'package:medical_app/src/features/home/data/models/record_model.dart';
 import 'package:medical_app/src/features/home/data/models/symptoms_model.dart';
+import 'package:medical_app/src/features/home/data/models/unit_of_form.dart';
+import 'package:medical_app/src/features/home/data/models/unit_of_weigth.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_bloc.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_event.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_state.dart';
 import 'package:medical_app/src/features/home/presentaion/widgets/custom_location_widget.dart';
 import 'package:medical_app/src/features/home/presentaion/widgets/custom_notes_widget.dart';
 import 'package:medical_app/src/features/home/presentaion/widgets/medication_item.dart';
@@ -20,27 +33,41 @@ class AddPainPage extends StatefulWidget {
 }
 
 class _AddPainPageState extends State<AddPainPage> {
-  final List<LocationModel> _painLocations = [
-
-    const LocationModel(locationName: 'Bosh',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Bo\'yin',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Yelka',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Orqa',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Tizza',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Oyoq',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Qorin',locationIcon:  AppAssets.man,locationNumber: 1),
-    const LocationModel(locationName: 'Ko\'krak',locationIcon:  AppAssets.man,locationNumber: 1),
-  ];
   final List<SymptomsModel> _symptomsList = [
-    SymptomsModel(symptomName: 'Bezovtalik',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Bosh aylanishi',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Noto\'g\'ri nafas olish',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Ruhiy tushkunliklar',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Ko\'ngil aynishi',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Qusish',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Ich ketish',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Hushidan ketish',symptomIcon: AppAssets.man,symptomNumber: 1),
-    SymptomsModel(symptomName: 'Depressiya',symptomIcon: AppAssets.man,symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Bezovtalik',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Bosh aylanishi',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Noto\'g\'ri nafas olish',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Ruhiy tushkunliklar',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Ko\'ngil aynishi',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Qusish', symptomIcon: AppAssets.man, symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Ich ketish',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Hushidan ketish',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
+    SymptomsModel(
+        symptomName: 'Depressiya',
+        symptomIcon: AppAssets.man,
+        symptomNumber: 1),
   ];
   final List<String> _characteristicList = [
     'Og\'riq',
@@ -121,72 +148,93 @@ class _AddPainPageState extends State<AddPainPage> {
     false,
   ];
 
+  int incId = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<HomeBloc>().add(const HomeInitialEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     print('_isCheckedLocation $_isCheckedLocation');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('O\'griqni qayd etish '),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomLocationWidget(
-                title: 'Where does it hurt?',
-                subTitle: 'Locations',
-                locations: _painLocations,
-                isChecked: _isCheckedLocation
-            ),
-            CustomSymptomsWidget(
-                title: 'What besides pain are you feeling?',
-                subTitle: 'Other associated symptoms',
-                symptomsList: _symptomsList,
-                isChecked: _isCheckedSymptoms
-            ),
-            CustomCharacteristicWidget(
-                title: 'What words best describe your pain?',
-                subTitle: 'Characteristics',
-                characteristicList: _characteristicList,
-                isChecked: _isCheckedCharacteristic
-            ),
-
-            CustomAggravatingFactorsWidget(
-                title: 'What made your pain worse?',
-                subTitle: 'Aggravating Factors',
-                factorsList: _factorsList,
-                isChecked: _isCheckedFactors
-            ),
-            MedicationItem(
-              title: 'What medications did you take?',
-              subTitle: 'Medications',
-              painLocations: _medicationsList,
-              isChecked: _isCheckedMedications,
-            ),
-            // InterventionItem(title: 'What besides medications did you try?',subTitle: 'Interventions', painLocations: _painLocations, isChecked: _isChecked, ),
-            CustomEnvironmentWidget(
-                title: 'Where were you during your pain?',
-                subTitle: 'Environment',
-                environmentsList: environmentList,
-                isChecked: _isCheckedEnvironment),
-
-            const CustomNotesWidget(title: 'Notes'),
-
-            sizedBox24Height,
-
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.all(16),
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green)
-                ),
-                onPressed: () {},
-                child: Text('Yozuvni saqlash va yopish'),
-              ),
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('O\'griqni qayd etish '),
         ),
-      ),
-    );
+        body: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  const CustomLocationWidget(
+                    title: 'Where does it hurt?',
+                    subTitle: 'Locations',
+                  ),
+                  CustomSymptomsWidget(
+                      title: 'What besides pain are you feeling?',
+                      subTitle: 'Other associated symptoms',
+                      symptomsList: _symptomsList,
+                      isChecked: _isCheckedSymptoms),
+                  CustomCharacteristicWidget(
+                      title: 'What words best describe your pain?',
+                      subTitle: 'Characteristics',
+                      characteristicList: _characteristicList,
+                      isChecked: _isCheckedCharacteristic),
+                  CustomAggravatingFactorsWidget(
+                      title: 'What made your pain worse?',
+                      subTitle: 'Aggravating Factors',
+                      factorsList: _factorsList,
+                      isChecked: _isCheckedFactors),
+                  MedicationItem(
+                    title: 'What medications did you take?',
+                    subTitle: 'Medications',
+                    painLocations: _medicationsList,
+                    isChecked: _isCheckedMedications,
+                  ),
+                  // InterventionItem(title: 'What besides medications did you try?',subTitle: 'Interventions', painLocations: _painLocations, isChecked: _isChecked, ),
+                  CustomEnvironmentWidget(
+                      title: 'Where were you during your pain?',
+                      subTitle: 'Environment',
+                      environmentsList: environmentList,
+                      isChecked: _isCheckedEnvironment),
+                  const CustomNotesWidget(title: 'Notes'),
+                  sizedBox24Height,
+                  Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.all(16),
+                    child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                      onPressed: () async {
+                        final dbHelper = DatabaseHelper.instance;
+                        context.read<HomeBloc>().add(InserRecordModelEvent(RecordModel(
+                            id: incId,
+                            painStatusNumber: incId,
+                            dateTime: DateTime.now().toIso8601String(),
+                            painLocationList: state.selectedLocationModelList,
+                            symptomsList: state.selectedAssociatedSymptomsModelList,
+                            characteristicList: state.selectedCharacteristicModelList,
+                            aggravatingFactorsList: state.selectedAggravatingFactorsModelList,
+                            medicationsList: state.selectedMedicalModelList,
+                            environmentList: state.selectedEnvironmentsModelList,
+                            notes: 'Notes'
+                        )));
+                        incId++;
+                        print('incId $incId');
+                        final listcon = await dbHelper.getAllRecords();
+                        final listWithoutParse = await dbHelper.getAllRec();
+                        print('listcon of records $listcon');
+                        print('listWithoutParse of records $listWithoutParse');
+                      },
+                      child: const Text('Yozuvni saqlash va yopish'),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ));
   }
 }

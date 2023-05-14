@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_app/src/core/constants/app_constants.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_event.dart';
 
 import '../../data/models/symptoms_model.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_state.dart';
 
 class CustomSymptomsWidget extends StatefulWidget {
   final String title;
@@ -27,6 +31,7 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
   bool isFirst = true;
 
   int checkedNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedCrossFade(
@@ -54,7 +59,8 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
                 children: [
                   Text(
                     widget.title,
-                    style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black54, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     widget.subTitle,
@@ -64,42 +70,46 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
               ),
               const Spacer(),
               Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  children: [
-                    (checkedNumber == 0)? Container(): Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(32)
-                      ),
-                      child: Center(
-                        child: Text(checkedNumber.toString(), style: TextStyle(color: Colors.white),),
-                      ),
-                    ),
-                    sizedBox12Height,
-                    MaterialButton(
-                        minWidth: 72.h,
-                        visualDensity: const VisualDensity(
-                          horizontal: -4,
-                        ),
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        padding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
-                        onPressed: () {
-                          setState(() {
-                            isFirst = !isFirst;
-                          });
-                        },
-                        child: Icon(
-                          CupertinoIcons.chevron_down,
-                          size: 30.h,
-                        )
-                    ),
-                  ],
-                )
-              )
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    children: [
+                      (checkedNumber == 0)
+                          ? Container()
+                          : Container(
+                              width: 32,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(32)),
+                              child: Center(
+                                child: Text(
+                                  checkedNumber.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                      sizedBox12Height,
+                      MaterialButton(
+                          minWidth: 72.h,
+                          visualDensity: const VisualDensity(
+                            horizontal: -4,
+                          ),
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.r)),
+                          onPressed: () {
+                            setState(() {
+                              isFirst = !isFirst;
+                            });
+                          },
+                          child: Icon(
+                            CupertinoIcons.chevron_down,
+                            size: 30.h,
+                          )),
+                    ],
+                  ))
             ],
           ),
         ),
@@ -132,7 +142,10 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
                           children: [
                             Text(
                               widget.title,
-                              style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold,),
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
                               widget.subTitle,
@@ -141,23 +154,28 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
                           ],
                         ),
                         Spacer(),
-                        (checkedNumber == 0)? Container():Container(
-                          width: 32,
-                          height: 32,
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(32)
-                          ),
-                          child: Center(
-                            child: Text(checkedNumber.toString(), style: TextStyle(color: Colors.white),),
-                          ),
-                        ),
+                        (checkedNumber == 0)
+                            ? Container()
+                            : Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(32)),
+                                child: Center(
+                                  child: Text(
+                                    checkedNumber.toString(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
                         MaterialButton(
                             minWidth: 72.h,
                             visualDensity: const VisualDensity(
                               horizontal: -4,
                             ),
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.r)),
@@ -172,41 +190,48 @@ class _CustomSymptomsWidgetState extends State<CustomSymptomsWidget> {
                             ))
                       ],
                     ),
-                    ...widget.symptomsList.map((symptoms) => Container(
-                      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.black.withOpacity(0.4),
-                              width: 2
-                          )
-                      ),
-                      child: CheckboxListTile(
-                        secondary: Image.asset(symptoms.symptomIcon, width: 32,height: 32,color: Colors.blue,),
-                        title: Text(symptoms.symptomName),
-                        value: widget.isChecked[widget.symptomsList.indexOf(symptoms)],
-                        onChanged: (bool? value) {
-                          setState(() {
-                            if(widget.isChecked[widget.symptomsList.indexOf(symptoms)] = value!){
-                              checkedNumber++;
-                            }else{
-                              checkedNumber--;
-                            }
-
-                            widget.isChecked[widget.symptomsList.indexOf(symptoms)] = value!;
-                          });
-                        },
-                      ),
-                    )
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        if (state.associatedSymptomsModelList.isEmpty) {
+                          return Container(
+                            child: Text('associatedSymptomsModelList is empty'),
+                          );
+                        } else {
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const ScrollPhysics(),
+                              itemCount: state.associatedSymptomsModelList.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  decoration: BoxDecoration(border: Border.all(color: Colors.black.withOpacity(0.4), width: 2)),
+                                  child: CheckboxListTile(
+                                    secondary: Image.asset(
+                                      state.associatedSymptomsModelList[index].symptomIcon,
+                                      width: 32,
+                                      height: 32,
+                                      color: Colors.blue,
+                                    ),
+                                    title: Text(state.associatedSymptomsModelList[index].symptomName),
+                                    value: state.associatedSymptomsCheckbox[state.associatedSymptomsModelList.indexOf(state.associatedSymptomsModelList[index])],
+                                    onChanged: (bool? value) {
+                                      context.read<HomeBloc>().add(ToggleSymptomsEvent(index));
+                                    },
+                                  ),
+                                );
+                              });
+                        }
+                      },
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
-        crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-        duration: const Duration(milliseconds: 300)
-    );
+        crossFadeState:
+            isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+        duration: const Duration(milliseconds: 300));
   }
 }

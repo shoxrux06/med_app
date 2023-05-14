@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_bloc.dart';
+import 'package:medical_app/src/features/home/presentaion/bloc/home_event.dart';
 
 class CustomCharacteristicWidget extends StatefulWidget {
   final String title;
@@ -137,7 +140,8 @@ class _CustomCharacteristicWidgetState extends State<CustomCharacteristicWidget>
                             child: Icon(
                               CupertinoIcons.chevron_up,
                               size: 30.h,
-                            ))
+                            )
+                        )
                       ],
                     ),
                     ...widget.characteristicList.map((e) => Container(
@@ -152,9 +156,9 @@ class _CustomCharacteristicWidgetState extends State<CustomCharacteristicWidget>
                         title: Text(e),
                         value: widget.isChecked[widget.characteristicList.indexOf(e)],
                         onChanged: (bool? value) {
+                          // context.read<HomeBloc>().add(HomeEvent());
                           setState(() {
-                            widget.isChecked[
-                            widget.characteristicList.indexOf(e)] = value!;
+                            widget.isChecked[widget.characteristicList.indexOf(e)] = value!;
                           });
                         },
                       ),

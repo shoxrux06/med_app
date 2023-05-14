@@ -21,16 +21,19 @@ RecordModel _$RecordModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RecordModel {
   int get id => throw _privateConstructorUsedError;
-  DateTime? get dateTime => throw _privateConstructorUsedError;
+  String? get dateTime => throw _privateConstructorUsedError;
   int get painStatusNumber => throw _privateConstructorUsedError;
-  LocationModel? get painLocation => throw _privateConstructorUsedError;
-  SymptomsModel? get symptoms => throw _privateConstructorUsedError;
-  CharacteristicsModel? get characteristics =>
+  List<LocationModel> get painLocationList =>
       throw _privateConstructorUsedError;
-  AggravatingFactorsModel? get aggravatingFactors =>
+  List<SymptomsModel> get symptomsList => throw _privateConstructorUsedError;
+  List<CharacteristicsModel> get characteristicList =>
       throw _privateConstructorUsedError;
-  MedicationModel? get medications => throw _privateConstructorUsedError;
-  EnvironmentModel? get environment => throw _privateConstructorUsedError;
+  List<AggravatingFactorsModel> get aggravatingFactorsList =>
+      throw _privateConstructorUsedError;
+  List<MedicationModel> get medicationsList =>
+      throw _privateConstructorUsedError;
+  List<EnvironmentModel> get environmentList =>
+      throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,22 +50,15 @@ abstract class $RecordModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      DateTime? dateTime,
+      String? dateTime,
       int painStatusNumber,
-      LocationModel? painLocation,
-      SymptomsModel? symptoms,
-      CharacteristicsModel? characteristics,
-      AggravatingFactorsModel? aggravatingFactors,
-      MedicationModel? medications,
-      EnvironmentModel? environment,
+      List<LocationModel> painLocationList,
+      List<SymptomsModel> symptomsList,
+      List<CharacteristicsModel> characteristicList,
+      List<AggravatingFactorsModel> aggravatingFactorsList,
+      List<MedicationModel> medicationsList,
+      List<EnvironmentModel> environmentList,
       String notes});
-
-  $LocationModelCopyWith<$Res>? get painLocation;
-  $SymptomsModelCopyWith<$Res>? get symptoms;
-  $CharacteristicsModelCopyWith<$Res>? get characteristics;
-  $AggravatingFactorsModelCopyWith<$Res>? get aggravatingFactors;
-  $MedicationModelCopyWith<$Res>? get medications;
-  $EnvironmentModelCopyWith<$Res>? get environment;
 }
 
 /// @nodoc
@@ -81,12 +77,12 @@ class _$RecordModelCopyWithImpl<$Res, $Val extends RecordModel>
     Object? id = null,
     Object? dateTime = freezed,
     Object? painStatusNumber = null,
-    Object? painLocation = freezed,
-    Object? symptoms = freezed,
-    Object? characteristics = freezed,
-    Object? aggravatingFactors = freezed,
-    Object? medications = freezed,
-    Object? environment = freezed,
+    Object? painLocationList = null,
+    Object? symptomsList = null,
+    Object? characteristicList = null,
+    Object? aggravatingFactorsList = null,
+    Object? medicationsList = null,
+    Object? environmentList = null,
     Object? notes = null,
   }) {
     return _then(_value.copyWith(
@@ -97,114 +93,40 @@ class _$RecordModelCopyWithImpl<$Res, $Val extends RecordModel>
       dateTime: freezed == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       painStatusNumber: null == painStatusNumber
           ? _value.painStatusNumber
           : painStatusNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      painLocation: freezed == painLocation
-          ? _value.painLocation
-          : painLocation // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
-      symptoms: freezed == symptoms
-          ? _value.symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as SymptomsModel?,
-      characteristics: freezed == characteristics
-          ? _value.characteristics
-          : characteristics // ignore: cast_nullable_to_non_nullable
-              as CharacteristicsModel?,
-      aggravatingFactors: freezed == aggravatingFactors
-          ? _value.aggravatingFactors
-          : aggravatingFactors // ignore: cast_nullable_to_non_nullable
-              as AggravatingFactorsModel?,
-      medications: freezed == medications
-          ? _value.medications
-          : medications // ignore: cast_nullable_to_non_nullable
-              as MedicationModel?,
-      environment: freezed == environment
-          ? _value.environment
-          : environment // ignore: cast_nullable_to_non_nullable
-              as EnvironmentModel?,
+      painLocationList: null == painLocationList
+          ? _value.painLocationList
+          : painLocationList // ignore: cast_nullable_to_non_nullable
+              as List<LocationModel>,
+      symptomsList: null == symptomsList
+          ? _value.symptomsList
+          : symptomsList // ignore: cast_nullable_to_non_nullable
+              as List<SymptomsModel>,
+      characteristicList: null == characteristicList
+          ? _value.characteristicList
+          : characteristicList // ignore: cast_nullable_to_non_nullable
+              as List<CharacteristicsModel>,
+      aggravatingFactorsList: null == aggravatingFactorsList
+          ? _value.aggravatingFactorsList
+          : aggravatingFactorsList // ignore: cast_nullable_to_non_nullable
+              as List<AggravatingFactorsModel>,
+      medicationsList: null == medicationsList
+          ? _value.medicationsList
+          : medicationsList // ignore: cast_nullable_to_non_nullable
+              as List<MedicationModel>,
+      environmentList: null == environmentList
+          ? _value.environmentList
+          : environmentList // ignore: cast_nullable_to_non_nullable
+              as List<EnvironmentModel>,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocationModelCopyWith<$Res>? get painLocation {
-    if (_value.painLocation == null) {
-      return null;
-    }
-
-    return $LocationModelCopyWith<$Res>(_value.painLocation!, (value) {
-      return _then(_value.copyWith(painLocation: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SymptomsModelCopyWith<$Res>? get symptoms {
-    if (_value.symptoms == null) {
-      return null;
-    }
-
-    return $SymptomsModelCopyWith<$Res>(_value.symptoms!, (value) {
-      return _then(_value.copyWith(symptoms: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CharacteristicsModelCopyWith<$Res>? get characteristics {
-    if (_value.characteristics == null) {
-      return null;
-    }
-
-    return $CharacteristicsModelCopyWith<$Res>(_value.characteristics!,
-        (value) {
-      return _then(_value.copyWith(characteristics: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AggravatingFactorsModelCopyWith<$Res>? get aggravatingFactors {
-    if (_value.aggravatingFactors == null) {
-      return null;
-    }
-
-    return $AggravatingFactorsModelCopyWith<$Res>(_value.aggravatingFactors!,
-        (value) {
-      return _then(_value.copyWith(aggravatingFactors: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MedicationModelCopyWith<$Res>? get medications {
-    if (_value.medications == null) {
-      return null;
-    }
-
-    return $MedicationModelCopyWith<$Res>(_value.medications!, (value) {
-      return _then(_value.copyWith(medications: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EnvironmentModelCopyWith<$Res>? get environment {
-    if (_value.environment == null) {
-      return null;
-    }
-
-    return $EnvironmentModelCopyWith<$Res>(_value.environment!, (value) {
-      return _then(_value.copyWith(environment: value) as $Val);
-    });
   }
 }
 
@@ -218,28 +140,15 @@ abstract class _$$_RecordModelCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      DateTime? dateTime,
+      String? dateTime,
       int painStatusNumber,
-      LocationModel? painLocation,
-      SymptomsModel? symptoms,
-      CharacteristicsModel? characteristics,
-      AggravatingFactorsModel? aggravatingFactors,
-      MedicationModel? medications,
-      EnvironmentModel? environment,
+      List<LocationModel> painLocationList,
+      List<SymptomsModel> symptomsList,
+      List<CharacteristicsModel> characteristicList,
+      List<AggravatingFactorsModel> aggravatingFactorsList,
+      List<MedicationModel> medicationsList,
+      List<EnvironmentModel> environmentList,
       String notes});
-
-  @override
-  $LocationModelCopyWith<$Res>? get painLocation;
-  @override
-  $SymptomsModelCopyWith<$Res>? get symptoms;
-  @override
-  $CharacteristicsModelCopyWith<$Res>? get characteristics;
-  @override
-  $AggravatingFactorsModelCopyWith<$Res>? get aggravatingFactors;
-  @override
-  $MedicationModelCopyWith<$Res>? get medications;
-  @override
-  $EnvironmentModelCopyWith<$Res>? get environment;
 }
 
 /// @nodoc
@@ -256,12 +165,12 @@ class __$$_RecordModelCopyWithImpl<$Res>
     Object? id = null,
     Object? dateTime = freezed,
     Object? painStatusNumber = null,
-    Object? painLocation = freezed,
-    Object? symptoms = freezed,
-    Object? characteristics = freezed,
-    Object? aggravatingFactors = freezed,
-    Object? medications = freezed,
-    Object? environment = freezed,
+    Object? painLocationList = null,
+    Object? symptomsList = null,
+    Object? characteristicList = null,
+    Object? aggravatingFactorsList = null,
+    Object? medicationsList = null,
+    Object? environmentList = null,
     Object? notes = null,
   }) {
     return _then(_$_RecordModel(
@@ -272,35 +181,35 @@ class __$$_RecordModelCopyWithImpl<$Res>
       dateTime: freezed == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       painStatusNumber: null == painStatusNumber
           ? _value.painStatusNumber
           : painStatusNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      painLocation: freezed == painLocation
-          ? _value.painLocation
-          : painLocation // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
-      symptoms: freezed == symptoms
-          ? _value.symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as SymptomsModel?,
-      characteristics: freezed == characteristics
-          ? _value.characteristics
-          : characteristics // ignore: cast_nullable_to_non_nullable
-              as CharacteristicsModel?,
-      aggravatingFactors: freezed == aggravatingFactors
-          ? _value.aggravatingFactors
-          : aggravatingFactors // ignore: cast_nullable_to_non_nullable
-              as AggravatingFactorsModel?,
-      medications: freezed == medications
-          ? _value.medications
-          : medications // ignore: cast_nullable_to_non_nullable
-              as MedicationModel?,
-      environment: freezed == environment
-          ? _value.environment
-          : environment // ignore: cast_nullable_to_non_nullable
-              as EnvironmentModel?,
+      painLocationList: null == painLocationList
+          ? _value._painLocationList
+          : painLocationList // ignore: cast_nullable_to_non_nullable
+              as List<LocationModel>,
+      symptomsList: null == symptomsList
+          ? _value._symptomsList
+          : symptomsList // ignore: cast_nullable_to_non_nullable
+              as List<SymptomsModel>,
+      characteristicList: null == characteristicList
+          ? _value._characteristicList
+          : characteristicList // ignore: cast_nullable_to_non_nullable
+              as List<CharacteristicsModel>,
+      aggravatingFactorsList: null == aggravatingFactorsList
+          ? _value._aggravatingFactorsList
+          : aggravatingFactorsList // ignore: cast_nullable_to_non_nullable
+              as List<AggravatingFactorsModel>,
+      medicationsList: null == medicationsList
+          ? _value._medicationsList
+          : medicationsList // ignore: cast_nullable_to_non_nullable
+              as List<MedicationModel>,
+      environmentList: null == environmentList
+          ? _value._environmentList
+          : environmentList // ignore: cast_nullable_to_non_nullable
+              as List<EnvironmentModel>,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -316,13 +225,19 @@ class _$_RecordModel implements _RecordModel {
       {this.id = 0,
       this.dateTime,
       this.painStatusNumber = 0,
-      this.painLocation,
-      this.symptoms,
-      this.characteristics,
-      this.aggravatingFactors,
-      this.medications,
-      this.environment,
-      this.notes = ''});
+      final List<LocationModel> painLocationList = const [],
+      final List<SymptomsModel> symptomsList = const [],
+      final List<CharacteristicsModel> characteristicList = const [],
+      final List<AggravatingFactorsModel> aggravatingFactorsList = const [],
+      final List<MedicationModel> medicationsList = const [],
+      final List<EnvironmentModel> environmentList = const [],
+      this.notes = ''})
+      : _painLocationList = painLocationList,
+        _symptomsList = symptomsList,
+        _characteristicList = characteristicList,
+        _aggravatingFactorsList = aggravatingFactorsList,
+        _medicationsList = medicationsList,
+        _environmentList = environmentList;
 
   factory _$_RecordModel.fromJson(Map<String, dynamic> json) =>
       _$$_RecordModelFromJson(json);
@@ -331,29 +246,74 @@ class _$_RecordModel implements _RecordModel {
   @JsonKey()
   final int id;
   @override
-  final DateTime? dateTime;
+  final String? dateTime;
   @override
   @JsonKey()
   final int painStatusNumber;
+  final List<LocationModel> _painLocationList;
   @override
-  final LocationModel? painLocation;
+  @JsonKey()
+  List<LocationModel> get painLocationList {
+    if (_painLocationList is EqualUnmodifiableListView)
+      return _painLocationList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_painLocationList);
+  }
+
+  final List<SymptomsModel> _symptomsList;
   @override
-  final SymptomsModel? symptoms;
+  @JsonKey()
+  List<SymptomsModel> get symptomsList {
+    if (_symptomsList is EqualUnmodifiableListView) return _symptomsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_symptomsList);
+  }
+
+  final List<CharacteristicsModel> _characteristicList;
   @override
-  final CharacteristicsModel? characteristics;
+  @JsonKey()
+  List<CharacteristicsModel> get characteristicList {
+    if (_characteristicList is EqualUnmodifiableListView)
+      return _characteristicList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_characteristicList);
+  }
+
+  final List<AggravatingFactorsModel> _aggravatingFactorsList;
   @override
-  final AggravatingFactorsModel? aggravatingFactors;
+  @JsonKey()
+  List<AggravatingFactorsModel> get aggravatingFactorsList {
+    if (_aggravatingFactorsList is EqualUnmodifiableListView)
+      return _aggravatingFactorsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_aggravatingFactorsList);
+  }
+
+  final List<MedicationModel> _medicationsList;
   @override
-  final MedicationModel? medications;
+  @JsonKey()
+  List<MedicationModel> get medicationsList {
+    if (_medicationsList is EqualUnmodifiableListView) return _medicationsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_medicationsList);
+  }
+
+  final List<EnvironmentModel> _environmentList;
   @override
-  final EnvironmentModel? environment;
+  @JsonKey()
+  List<EnvironmentModel> get environmentList {
+    if (_environmentList is EqualUnmodifiableListView) return _environmentList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_environmentList);
+  }
+
   @override
   @JsonKey()
   final String notes;
 
   @override
   String toString() {
-    return 'RecordModel(id: $id, dateTime: $dateTime, painStatusNumber: $painStatusNumber, painLocation: $painLocation, symptoms: $symptoms, characteristics: $characteristics, aggravatingFactors: $aggravatingFactors, medications: $medications, environment: $environment, notes: $notes)';
+    return 'RecordModel(id: $id, dateTime: $dateTime, painStatusNumber: $painStatusNumber, painLocationList: $painLocationList, symptomsList: $symptomsList, characteristicList: $characteristicList, aggravatingFactorsList: $aggravatingFactorsList, medicationsList: $medicationsList, environmentList: $environmentList, notes: $notes)';
   }
 
   @override
@@ -366,18 +326,18 @@ class _$_RecordModel implements _RecordModel {
                 other.dateTime == dateTime) &&
             (identical(other.painStatusNumber, painStatusNumber) ||
                 other.painStatusNumber == painStatusNumber) &&
-            (identical(other.painLocation, painLocation) ||
-                other.painLocation == painLocation) &&
-            (identical(other.symptoms, symptoms) ||
-                other.symptoms == symptoms) &&
-            (identical(other.characteristics, characteristics) ||
-                other.characteristics == characteristics) &&
-            (identical(other.aggravatingFactors, aggravatingFactors) ||
-                other.aggravatingFactors == aggravatingFactors) &&
-            (identical(other.medications, medications) ||
-                other.medications == medications) &&
-            (identical(other.environment, environment) ||
-                other.environment == environment) &&
+            const DeepCollectionEquality()
+                .equals(other._painLocationList, _painLocationList) &&
+            const DeepCollectionEquality()
+                .equals(other._symptomsList, _symptomsList) &&
+            const DeepCollectionEquality()
+                .equals(other._characteristicList, _characteristicList) &&
+            const DeepCollectionEquality().equals(
+                other._aggravatingFactorsList, _aggravatingFactorsList) &&
+            const DeepCollectionEquality()
+                .equals(other._medicationsList, _medicationsList) &&
+            const DeepCollectionEquality()
+                .equals(other._environmentList, _environmentList) &&
             (identical(other.notes, notes) || other.notes == notes));
   }
 
@@ -388,12 +348,12 @@ class _$_RecordModel implements _RecordModel {
       id,
       dateTime,
       painStatusNumber,
-      painLocation,
-      symptoms,
-      characteristics,
-      aggravatingFactors,
-      medications,
-      environment,
+      const DeepCollectionEquality().hash(_painLocationList),
+      const DeepCollectionEquality().hash(_symptomsList),
+      const DeepCollectionEquality().hash(_characteristicList),
+      const DeepCollectionEquality().hash(_aggravatingFactorsList),
+      const DeepCollectionEquality().hash(_medicationsList),
+      const DeepCollectionEquality().hash(_environmentList),
       notes);
 
   @JsonKey(ignore: true)
@@ -413,14 +373,14 @@ class _$_RecordModel implements _RecordModel {
 abstract class _RecordModel implements RecordModel {
   const factory _RecordModel(
       {final int id,
-      final DateTime? dateTime,
+      final String? dateTime,
       final int painStatusNumber,
-      final LocationModel? painLocation,
-      final SymptomsModel? symptoms,
-      final CharacteristicsModel? characteristics,
-      final AggravatingFactorsModel? aggravatingFactors,
-      final MedicationModel? medications,
-      final EnvironmentModel? environment,
+      final List<LocationModel> painLocationList,
+      final List<SymptomsModel> symptomsList,
+      final List<CharacteristicsModel> characteristicList,
+      final List<AggravatingFactorsModel> aggravatingFactorsList,
+      final List<MedicationModel> medicationsList,
+      final List<EnvironmentModel> environmentList,
       final String notes}) = _$_RecordModel;
 
   factory _RecordModel.fromJson(Map<String, dynamic> json) =
@@ -429,21 +389,21 @@ abstract class _RecordModel implements RecordModel {
   @override
   int get id;
   @override
-  DateTime? get dateTime;
+  String? get dateTime;
   @override
   int get painStatusNumber;
   @override
-  LocationModel? get painLocation;
+  List<LocationModel> get painLocationList;
   @override
-  SymptomsModel? get symptoms;
+  List<SymptomsModel> get symptomsList;
   @override
-  CharacteristicsModel? get characteristics;
+  List<CharacteristicsModel> get characteristicList;
   @override
-  AggravatingFactorsModel? get aggravatingFactors;
+  List<AggravatingFactorsModel> get aggravatingFactorsList;
   @override
-  MedicationModel? get medications;
+  List<MedicationModel> get medicationsList;
   @override
-  EnvironmentModel? get environment;
+  List<EnvironmentModel> get environmentList;
   @override
   String get notes;
   @override
