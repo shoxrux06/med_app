@@ -7,7 +7,6 @@ import 'package:medical_app/src/core/utils/database_helper.dart';
 import 'package:medical_app/src/features/home/data/repository/home_repository.dart';
 import 'package:medical_app/src/features/home/presentaion/bloc/home_bloc.dart';
 
-
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
 
@@ -20,11 +19,13 @@ class AppWidget extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider<HomeBloc>(create: (_) =>HomeBloc(DatabaseHelper.instance, HomeRepository())),
+            BlocProvider<HomeBloc>(
+                create: (_) =>
+                    HomeBloc(DatabaseHelper.instance, HomeRepository())),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute:AppRoutes.main,
+            initialRoute: AppRoutes.main,
             onGenerateRoute: AppPages.generateRoute,
             darkTheme: ThemeData.dark(),
             theme: ThemeData.light(),

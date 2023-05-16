@@ -23,21 +23,29 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Tizimga kirish'),
+          title: const Text('Tizimga kirish'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 48,),
+            const SizedBox(
+              height: 48,
+            ),
             Align(
               alignment: Alignment.center,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(AppAssets.logo, width: 100,height: 100,),
-                  SizedBox(width: 12,),
-                  Text('Ilova nomi'),
+                  Image.asset(
+                    AppAssets.logo,
+                    width: 100,
+                    height: 100,
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  const Text('Ilova nomi'),
                 ],
               ),
             ),
@@ -55,22 +63,22 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 24,
             ),
-            const RequestButton(
-              isLoading: false,
-              text: 'Kirish'
-            ),
+            const RequestButton(isLoading: false, text: 'Kirish'),
             const SizedBox(
               height: 24,
             ),
-            Text('Ro\'yxatdan o\'tmaganmisz?'),
+            const Text('Ro\'yxatdan o\'tmaganmisz?'),
             const SizedBox(
               height: 24,
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const RegistrationPage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const RegistrationPage()));
               },
-              child: Text('Ro\'yxatdan o\'tish',),
+              child: const Text(
+                'Ro\'yxatdan o\'tish',
+              ),
             ),
           ],
         ),
