@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_app/src/core/constants/app_assets.dart';
 import 'package:medical_app/src/features/auth/presentation/pages/registration_page.dart';
-import 'package:medical_app/src/features/auth/presentation/widgets/custom_button.dart';
 
 import '../widgets/request_button.dart';
 

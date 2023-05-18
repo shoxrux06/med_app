@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const sizedBox24Height = SizedBox(
@@ -26,3 +25,6 @@ const enabledBorder = OutlineInputBorder(
     color: Colors.black12,
   ),
 );
+
+String noRecord =
+    'Belgilangan sana oralig\'ida hech qanday natija qo\'shilmagan yoki hech qanday natija mavjud emas';
