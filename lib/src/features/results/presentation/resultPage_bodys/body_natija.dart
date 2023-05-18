@@ -6,7 +6,7 @@ class NatijaBodys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('natija'),
+      child: Text('natijja'),
     );
   }
 }
