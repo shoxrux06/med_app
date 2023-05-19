@@ -14,7 +14,7 @@ class MundarijaBodys extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color: Colors.grey ,
+            color: Colors.grey,
             borderRadius: BorderRadius.circular(5),
             boxShadow: const [
               BoxShadow(
