@@ -2,8 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:medical_app/src/core/constants/app_colors.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
-class InsightsBody extends StatelessWidget {
+class InsightsBody extends StatefulWidget {
   const InsightsBody({super.key});
+
+  @override
+  State<InsightsBody> createState() => _InsightsBodyState();
+}
+
+class _InsightsBodyState extends State<InsightsBody> {
+  List<num> datas = <double>[
+    1,
+    5,
+    6,
+    0,
+    10,
+    2,
+    7,
+    7,
+    4,
+    10,
+    8,
+    6,
+    7,
+    5,
+    8,
+    5,
+    3
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,25 +80,7 @@ class InsightsBody extends StatelessWidget {
                         displayMode: SparkChartMarkerDisplayMode.all),
                     //Enable data label
                     labelDisplayMode: SparkChartLabelDisplayMode.all,
-                    data: const <double>[
-                      1,
-                      5,
-                      6,
-                      0,
-                      1,
-                      2,
-                      7,
-                      7,
-                      4,
-                      10,
-                      8,
-                      6,
-                      7,
-                      5,
-                      8,
-                      5,
-                      3
-                    ],
+                    data: datas,
                   ),
                 ),
               ],

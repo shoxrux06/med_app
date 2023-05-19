@@ -29,10 +29,9 @@ class _ResultsPageState extends State<ResultsPage>
     tabControll3r = TabController(length: 5, vsync: this);
   }
 
+  String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = list.first;
-
     return Scaffold(
         backgroundColor: Colors.white70,
         appBar: AppBar(
