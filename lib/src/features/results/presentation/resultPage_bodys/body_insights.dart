@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_app/src/core/constants/app_colors.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:medical_app/src/features/results/presentation/resultPage_bodys/body_mundarija.dart';
 
 class InsightsBody extends StatefulWidget {
   const InsightsBody({super.key});
@@ -10,26 +10,6 @@ class InsightsBody extends StatefulWidget {
 }
 
 class _InsightsBodyState extends State<InsightsBody> {
-  List<num> datas = <double>[
-    1,
-    5,
-    6,
-    0,
-    10,
-    2,
-    7,
-    7,
-    4,
-    10,
-    8,
-    6,
-    7,
-    5,
-    8,
-    5,
-    3
-  ];
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -40,6 +20,7 @@ class _InsightsBodyState extends State<InsightsBody> {
       child: Column(
         children: [
           Container(
+            padding: const EdgeInsets.only(top: 5),
             margin: const EdgeInsets.only(
               left: 5,
               right: 5,
@@ -48,7 +29,9 @@ class _InsightsBodyState extends State<InsightsBody> {
             ),
             width: width * .97,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(5)),
+              color: Colors.white70,
+              borderRadius: BorderRadius.circular(5),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,26 +51,68 @@ class _InsightsBodyState extends State<InsightsBody> {
                   padding: const EdgeInsets.only(
                     right: 10,
                     left: 10,
-                    top: 24,
+                    top: 10,
                     bottom: 12,
                   ),
-                  child: SfSparkLineChart(
-                    //Enable the trackball
-                    trackball: const SparkChartTrackball(
-                        activationMode: SparkChartActivationMode.tap),
-                    //Enable marker
-                    marker: const SparkChartMarker(
-                        displayMode: SparkChartMarkerDisplayMode.all),
-                    //Enable data label
-                    labelDisplayMode: SparkChartLabelDisplayMode.all,
-                    data: datas,
+                  child: chartWidget(
+                    width * .98,
+                    height * .5,
+                    Colors.grey[300]!,
+                    Colors.white,
                   ),
                 ),
               ],
             ),
           ),
-          insightsInfosWidget(width, height,
-              foizi: '100', illenessName: 'Head', title: 'Location'),
+          insightsInfosWidget(
+            context,
+            width,
+            width * .8,
+            0,
+            height,
+            foizi: '100',
+            illenessName: 'Bosh',
+            title: 'Joylashuv',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          insightsInfosWidget(
+            context,
+            width,
+            width * .1,
+            width * .7,
+            height,
+            foizi: '10',
+            illenessName: 'Aqli zaiflik',
+            title: 'Boshqa simptomlar',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          insightsInfosWidget(
+            context,
+            width,
+            width * .5,
+            width * .3,
+            height,
+            foizi: '50',
+            illenessName: 'ignalar bilan',
+            title: 'Xususiyatlari',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          insightsInfosWidget(
+            context,
+            width,
+            width * .3,
+            width * .5,
+            height,
+            foizi: '30',
+            illenessName: 'Tizza',
+            title: 'Joylashuv',
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -98,23 +123,29 @@ class _InsightsBodyState extends State<InsightsBody> {
 }
 
 /* bodyIsightsni ichida qollanilgan */
-Container insightsInfosWidget(double width, double height,
-    {required String title,
-    required String illenessName,
-    required String foizi}) {
+Container insightsInfosWidget(
+  BuildContext context,
+  double width1,
+  double width2,
+  double width4,
+  double height, {
+  required String title,
+  required String illenessName,
+  required String foizi,
+}) {
   return Container(
-    width: width * .97,
+    width: width1 * .97,
     height: height * .25,
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(5),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.white54,
-          blurRadius: 2,
-          offset: Offset(1, 2),
-        ),
-      ],
+      // boxShadow: const [
+      //   BoxShadow(
+      //     color: Colors.white,
+      //     blurRadius: 2,
+      //     offset: Offset(1, 2),
+      //   ),
+      // ],
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -128,18 +159,25 @@ Container insightsInfosWidget(double width, double height,
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(),
+            const SizedBox(
+              width: 10,
+            ),
             Container(
-              width: width * .8,
+              width: width2,
               height: 8,
               decoration: const BoxDecoration(
                 color: AppColors.bluEAccent,
               ),
             ),
+            SizedBox(
+              width: width4,
+            ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _showMyDialog1(context);
+              },
               splashRadius: 20,
               icon: const Icon(
                 Icons.info_outline,
@@ -175,5 +213,37 @@ Container insightsInfosWidget(double width, double height,
         )
       ],
     ),
+  );
+}
+
+Future<void> _showMyDialog1(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Malumot',
+          textAlign: TextAlign.center,
+        ),
+        content: const SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text(
+                '100 foizga asoslangan 1 ta " Pain Record Sistemas " ushbu malumotni o\'z ichiga oladi!',
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }
